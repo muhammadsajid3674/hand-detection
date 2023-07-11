@@ -7,26 +7,34 @@
 // 7. Drawing utilities DONE
 // 8. Draw functions DONE
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 // import logo from './logo.svg';
 import * as tf from "@tensorflow/tfjs";
 import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
 import "./App.css";
-import { drawHand } from "./utilities.js";
-import ringImg from "./img/ring.png";
+// import { drawHand } from "./utilities.js";
+// import ringImg from "./img/ring.png";
 
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const imgURI = window.location.search
+  let newStr = imgURI.substring(1);
 
+  // window.location.href += imgURI
+  console.log('URL :>> ', newStr);
   const runHandpose = async () => {
-    const net = await handpose.load();
-    console.log("Handpose model loaded.");
-    //  Loop and detect hands
-    setInterval(() => {
-      detect(net);
-    }, 100);
+    try {
+      const net = await handpose.load();
+      console.log("Handpose model loaded.");
+      //  Loop and detect hands
+      setInterval(() => {
+        detect(net);
+      }, 100);
+    } catch (error) {
+      console.log('fetch error :>> ', error);
+    }
   };
 
   const detect = async (net) => {
@@ -52,9 +60,11 @@ function App() {
       // Make Detections
       const hand = await net.estimateHands(video);
       console.log(hand);
+      console.log('width :>> ', webcamRef.current.video);
+      console.log('height :>> ', canvasRef.current.height);
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
-      ctx.rect(videoWidth / 2 - 250, videoHeight / 2 - 200, 500, 400);
+      ctx.rect(canvasRef.current.width / 2 - 250, canvasRef.current.height / 2 - (window.innerWidth < 600 ? 75 : 200), 500, (window.innerWidth < 600 ? 150 : 400));
       ctx.fillStyle = "transparent";
       ctx.fill();
       ctx.lineWidth = 4;
@@ -63,16 +73,18 @@ function App() {
       // drawHand(hand, ctx);
       if (ctx.strokeStyle === '#008000') {
         var img = document.getElementById("ringImg");
-        ctx.drawImage(img, videoWidth / 2 - 20, videoHeight / 2 - 100, 40, 50);
+        ctx.drawImage(img, canvasRef.current.width / 2 - 20, canvasRef.current.height / 2 - (window.innerWidth < 600 ? 35 : 100), 40, (window.innerWidth < 600 ? 25 : 50));
       }
     }
   };
 
   runHandpose();
+
   return (
     <div className="App">
       <header className="App-header" style={{ position: 'relative' }}>
         <Webcam
+          className="webCam"
           ref={webcamRef}
           style={{
             position: "absolute",
@@ -82,13 +94,13 @@ function App() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 860,
             height: 700,
           }}
         />
 
         <canvas
           id="myCanvas"
+          className="canvas-width"
           ref={canvasRef}
           style={{
             position: "absolute",
@@ -98,11 +110,10 @@ function App() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 860,
             height: 700,
           }}
         />
-        <img id="ringImg" src={ringImg} alt="The Scream" style={{display: 'none'}}></img>
+        <img id="ringImg" src={newStr} alt="The Scream" style={{ display: 'none' }}></img>
       </header>
     </div>
   );

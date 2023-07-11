@@ -33,3 +33,74 @@ You're about to initialize a Firebase project in this directory:
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 [error] 
 [error] Error: Failed to list Firebase projects. See firebase-debug.log for more info.
+[debug] [2023-07-10T18:06:58.791Z] ----------------------------------------------------------------------
+[debug] [2023-07-10T18:06:58.794Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\DT55\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-07-10T18:06:58.795Z] CLI Version:   12.4.3
+[debug] [2023-07-10T18:06:58.795Z] Platform:      win32
+[debug] [2023-07-10T18:06:58.795Z] Node Version:  v20.1.0
+[debug] [2023-07-10T18:06:58.795Z] Time:          Mon Jul 10 2023 23:06:58 GMT+0500 (Pakistan Standard Time)
+[debug] [2023-07-10T18:06:58.795Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-07-10T18:06:58.804Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-07-10T18:06:58.804Z] > authorizing via signed-in user (sajidworkplace7@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Sajid Shahid\Personal Clones\hand-detection
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-07-10T18:07:03.402Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2023-07-10T18:07:07.656Z] Failed to make request to https://firebase.googleapis.com/v1beta1/projects?pageSize=100
+[debug] [2023-07-10T18:07:09.075Z] FirebaseError: Failed to make request to https://firebase.googleapis.com/v1beta1/projects?pageSize=100
+    at RetryOperation._fn (C:\Users\DT55\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:242:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to list Firebase projects. See firebase-debug.log for more info.
+[debug] [2023-07-10T18:07:13.703Z] ----------------------------------------------------------------------
+[debug] [2023-07-10T18:07:13.707Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\DT55\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-07-10T18:07:13.707Z] CLI Version:   12.4.3
+[debug] [2023-07-10T18:07:13.708Z] Platform:      win32
+[debug] [2023-07-10T18:07:13.708Z] Node Version:  v20.1.0
+[debug] [2023-07-10T18:07:13.708Z] Time:          Mon Jul 10 2023 23:07:13 GMT+0500 (Pakistan Standard Time)
+[debug] [2023-07-10T18:07:13.708Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-07-10T18:07:13.716Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-07-10T18:07:13.717Z] > authorizing via signed-in user (sajidworkplace7@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Sajid Shahid\Personal Clones\hand-detection
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2023-07-10T18:07:51.713Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-07-10T18:07:51.714Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"hand-gesture-detection","name":"hand-gesture-detection"}
+[debug] [2023-07-10T18:07:57.511Z] FirebaseError: Failed to make request to https://cloudresourcemanager.googleapis.com/v1/projects
+    at RetryOperation._fn (C:\Users\DT55\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:242:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.

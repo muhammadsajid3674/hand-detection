@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.webCam {
+  width: 860px !important;
+}
+
+.canvas-width {
+  width: 860px !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .webCam {
+    width: 340px !important;
+  }
+
+  .canvas-width {
+    width: 340px !important;
+  }
+}
