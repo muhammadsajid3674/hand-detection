@@ -24,15 +24,28 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.basic:before {
+  content: '';
+  display: block;
+  height: 50px;
+  width: 50px;
+  -webkit-animation: spin .5s infinite linear;
+  animation: spin .5s infinite linear;
+  border: 6px #fff solid;
+  border-left-color: #000;
+  border-radius: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+@-webkit-keyframes spin {
   to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
