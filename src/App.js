@@ -6,12 +6,13 @@ import Webcam from "react-webcam";
 import "./App.css";
 import useWindowSize from "./hook";
 // import { drawHand } from "./utilities.js";
-// import ringImg from "./img/ring.png";
+import ringImg from "./img/Hand-Scanner.png";
 
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const [isLoading, setLoader] = useState(true)
+  const [isDetected, setDetected] = useState(false)
   const imgURI = window.location.search
   let newStr = imgURI.split("==");
   let imgType = newStr[1];
@@ -49,34 +50,36 @@ function App() {
       webcamRef.current.video.height = window.innerHeight;
 
       // Set canvas height and width
-      canvasRef.current.width = videoWidth;
-      canvasRef.current.height = videoHeight;
+      // canvasRef.current.width = videoWidth;
+      // canvasRef.current.height = videoHeight;
 
       // Make Detections
       const hand = await net.estimateHands(video);
+      hand.length > 0 ? setDetected(true) : setDetected(false);
+
       // Draw mesh
-      const ctx = canvasRef.current.getContext("2d");
-      ctx.rect(
-        0,
-        0,
-        280,
-        480
-      );
-      ctx.fillStyle = "transparent";
-      ctx.fill();
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = hand.length > 0 ? "green" : "red";
-      ctx.stroke();
+      // const ctx = canvasRef.current.getContext("2d");
+      // ctx.rect(
+      //   0,
+      //   0,
+      //   280,
+      //   480
+      // );
+      // ctx.fillStyle = "transparent";
+      // ctx.fill();
+      // ctx.lineWidth = 4;
+      // ctx.strokeStyle = hand.length > 0 ? "green" : "red";
+      // ctx.stroke();
 
       // drawHand(hand, ctx);
-      if (ctx.strokeStyle === '#008000') {
-        var img = document.getElementById("ringImg");
-        if (imgType === 'ring') {
-          ctx.drawImage(img, canvasRef.current.width / 2 - 20, canvasRef.current.height / 2 - 100, 40, 50);
-        } else if (imgType === 'braclet') {
-          ctx.drawImage(img, canvasRef.current.width / 2 - 40, canvasRef.current.height / 2 - 25, 80, 50);
-        }
-      }
+      // if (ctx.strokeStyle === '#008000') {
+      //   var img = document.getElementById("ringImg");
+      //   if (imgType === 'ring') {
+      //     ctx.drawImage(img, canvasRef.current.width / 2 - 20, canvasRef.current.height / 2 - 100, 40, 50);
+      //   } else if (imgType === 'bracelet') {
+      //     ctx.drawImage(img, canvasRef.current.width / 2 - 40, canvasRef.current.height / 2 - 25, 80, 50);
+      //   }
+      // }
     }
   };
 
@@ -86,7 +89,7 @@ function App() {
       <header className="App-header" style={{ position: 'relative' }}>
         {isLoading ? <div className="basic"></div> : <>
           <Webcam
-            className="webCam"
+            className="webcamCapture"
             ref={webcamRef}
             style={{
               position: "absolute",
@@ -96,14 +99,15 @@ function App() {
               right: 0,
               textAlign: "center",
             }}
-            videoConstraints={{
-              width: { ideal: 280 },
-              height: { ideal: 480 },
-              facingMode: 'enviroment'
-            }}
+            mirrored={false}
+          // videoConstraints={{
+          //   width: { ideal: 280 },
+          //   height: { ideal: 480 },
+          //   facingMode: 'enviroment'
+          // }}
           />
 
-          <canvas
+          {/* <canvas
             id="myCanvas"
             className="canvas-width"
             ref={canvasRef}
@@ -115,8 +119,10 @@ function App() {
               right: 0,
               textAlign: "center",
             }}
-          />
-          <img id="ringImg" src={imgUrl} alt="The Scream" style={{ display: 'none' }}></img>
+          /> */}
+          {!isDetected && <img id="ringImg" className="scanner-image" src={ringImg} alt="" style={{ display: 'block', zIndex: 12465, width: '30%' }} />}
+          {isDetected && imgType === 'ring' && <img id="ring" src={imgUrl} alt="" />}
+          {isDetected && imgType === 'bracelet' && <img id="bracelet" src={imgUrl} alt="" />}
         </>}
       </header>
     </div>

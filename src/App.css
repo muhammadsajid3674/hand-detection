@@ -24,6 +24,60 @@
   color: white;
 }
 
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#ring {
+  position: absolute;
+  width: 40px;
+  height: auto;
+  top: 30%;
+  right: 50%;
+  z-index: 5;
+}
+
+#bracelet {
+  position: absolute;
+  width: 130px;
+  height: auto;
+  bottom: 15%;
+  right: 30%;
+}
+
+
+.webcamCapture {
+  position: relative;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media only screen and (max-device-width : 640px) {
+  .webcamCapture {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-device-width: 768px) {
+  .webcamCapture {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+  }
+}
+
 .basic:before {
   content: '';
   display: block;
